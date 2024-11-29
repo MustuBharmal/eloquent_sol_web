@@ -2,7 +2,12 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className="min-h-screen bg-white"
+      style={{
+        background: "linear-gradient(111.98deg, rgba(188, 232, 227, 0.01) 31.94%, rgba(93, 204, 193, 0.3) 85.58%)",
+      }}
+    >
       <main className="relative w-full max-w-[90rem] h-[42.5rem] mx-auto mt-[5rem] px-4 sm:px-6 lg:px-8 overflow-hidden">
         <h1
           className="absolute top-[5rem] left-[5rem] w-[46.0625rem] h-[3.6875rem] font-montserrat font-bold text-[3rem] leading-[3.6569375rem] text-[#009688]"

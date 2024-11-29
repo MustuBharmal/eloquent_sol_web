@@ -77,7 +77,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="w-[1440px] h-[994px] bg-[#F2F2F2] relative" style={{ marginTop: '6248px' }}>
+    <div className="w-[1440px] h-[994px] bg-[#F2F2F2] relative" >
       {/* Contact Us Title */}
       <h1 className="text-3xl font-bold text-[#002B5B] text-center pt-8 mb-8">Contact Us</h1>
 
@@ -107,11 +107,11 @@ export default function ContactForm() {
             <img src="linkedln.png" alt="linkedin" />
           </span>
           <a
-            href="https://linkedin.com/company/shopkart-solutions/"
+            href="https://linkedin.com/company/eloquent-solutions/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-base leading-[18.75px] text-blue-500 underline truncate"
-            style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+            className="text-base leading-[18px] text-blue-500 underline truncate"
+            style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
           >
             linkedin.com/company/eloquent-solutions/
           </a>

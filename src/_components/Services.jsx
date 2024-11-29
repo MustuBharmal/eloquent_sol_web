@@ -2,7 +2,13 @@ import React from "react";
 
 const Services = () => {
   return (
-    <section className="w-[1440px] h-[1300px] mx-auto relative">
+    <section
+      className="w-[1440px] h-[1300px] mx-auto relative"
+      style={{
+        background:
+          "radial-gradient(93.92% 93.92% at 50% 6.08%, rgba(105, 167, 231, 0.2) 0%, rgba(105, 167, 231, 0.01) 30.39%, rgba(105, 167, 231, 0.01) 98.56%)",
+      }}
+    >
       {/* Title Section */}
       <div className="absolute top-[10px] left-[50%] transform -translate-x-1/2 w-full text-center">
         <h2 className="font-montserrat font-bold text-[48px] leading-[58.51px] text-[#00264D]">

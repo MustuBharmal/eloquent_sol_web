@@ -17,6 +17,11 @@ app.use(
   })
 );
 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
 // POST route for handling form data
 app.post("/send-email", async (req, res) => {
   const { name, email, message, interest } = req.body;

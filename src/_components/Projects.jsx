@@ -43,11 +43,11 @@ function Projects() {
             <div className="ml-16 flex flex-col justify-center ">
               <h3
                 className="w-[400px] h-[39px] text-[#009688]
-                font-semibold text-[32px] leading-[39px] mb-12"
+                font-semibold text-[32px] leading-[39px] relative mb-10"
               >
                 {project.title}
               </h3>
-              <p  className="mb-5 top-[367px]">{project.description}</p>
+              <p  className=" mb-12">{project.description}</p>
               <button
                 type="button"
                 className="w-[145px] h-[48px] px-1 py-1 rounded-[16px] 
