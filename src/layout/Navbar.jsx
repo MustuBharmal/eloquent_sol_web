@@ -1,6 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (path) => {
+    if (location.pathname === '/') {
+      // If we're on the homepage, scroll to the section
+      const element = document.getElementById(path.replace('/', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, navigate to homepage then scroll
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(path.replace('/', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <header
       className="w-full h-20 bg-white shadow-md fixed top-0 left-0 z-50"
@@ -23,44 +46,29 @@ const Navbar = () => {
             />
           </Link>
           <nav className="ml-16 hidden lg:flex space-x-8">
-            <Link
-              to="/#services"
-              className="text-gray-700 hover:text-[#00264D] font-medium transition-colors duration-200 text-sm uppercase tracking-wide"
-            >
-              Services
-            </Link>
-            <Link
-              to="/#projects"
-              className="text-gray-700 hover:text-[#00264D] font-medium transition-colors duration-200 text-sm uppercase tracking-wide"
-            >
-              Projects
-            </Link>
-            <Link
-              to="/#tech-stack"
-              className="text-gray-700 hover:text-[#00264D] font-medium transition-colors duration-200 text-sm uppercase tracking-wide"
-            >
-              Tech Stack
-            </Link>
-            <Link
-              to="/#why-us"
-              className="text-gray-700 hover:text-[#00264D] font-medium transition-colors duration-200 text-sm uppercase tracking-wide"
-            >
-              Why us
-            </Link>
-            <Link
-              to="/#testimonials"
-              className="text-gray-700 hover:text-[#00264D] font-medium transition-colors duration-200 text-sm uppercase tracking-wide"
-            >
-              Testimonials
-            </Link>
+            {[
+              { label: 'Services', path: 'services' },
+              { label: 'Projects', path: 'projects' },
+              { label: 'Tech Stack', path: 'tech-stack' },
+              { label: 'Why us', path: 'why-us' },
+              { label: 'Testimonials', path: 'testimonials' },
+            ].map((item, index) => (
+              <button
+                key={index}
+                onClick={() => handleNavigation(item.path)}
+                className="text-gray-700 hover:text-[#00264D] font-medium transition-colors duration-200 text-sm uppercase tracking-wide"
+              >
+                {item.label}
+              </button>
+            ))}
           </nav>
         </div>
-        <Link
-          to="/contact"
-          className="bg-[#00264D] text-white px-6 py-2.5 rounded-lg shadow-md hover:bg-[#003366] transition-all duration-200 font-medium text-sm uppercase tracking-wide transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#00264D] focus:ring-opacity-50 inline-block"
+        <button
+          onClick={() => handleNavigation('contact')}
+          className="bg-[#00264D] text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-[#003366] transition-colors duration-200"
         >
           Contact Us
-        </Link>
+        </button>
       </div>
     </header>
   );

@@ -89,7 +89,7 @@ export default function ContactForm() {
       </div>
 
       {/* Contact Details */}
-      <div className="absolute top-[446px] left-[910px] w-[340px] h-[104px]">
+      <div className="absolute top-[446px] left-[910px] w-[380px] h-[104px]">
         <div className="flex items-center mb-5">
           <span className="w-6 h-6 mr-2">
             <img src="phone.png" alt="phone" />
@@ -103,19 +103,23 @@ export default function ContactForm() {
           <span className="text-base leading-[18.75px]">info@eloquentsolutions.in</span>
         </div>
         <div className="flex items-center mt-3">
-          <span className="w-6 h-6 mr-2">
-            <img src="linkedln.png" alt="linkedin" />
-          </span>
-          <a
-            href="https://linkedin.com/company/eloquent-solutions/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-base leading-[18px] text-blue-500 underline truncate"
-            style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
-          >
-            linkedin.com/company/eloquent-solutions/
-          </a>
-        </div>
+  {/* Icon */}
+  <span className="w-6 h-6 mr-2">
+    <img src="linkedln.png" alt="linkedin" />
+  </span>
+
+  {/* Link */}
+  <a
+    href="https://linkedin.com/company/eloquent-solutions/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-base leading-[18px] text-blue-500 hover:underline"
+    style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip' }}
+  >
+    linkedin.com/company/eloquent-solutions
+  </a>
+</div>
+
       </div>
 
       {/* Form Section */}
