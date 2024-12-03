@@ -8,6 +8,7 @@ import WhyEloquentSolutions from './_components/WhyEloquentSolutions';
 import Testimonials from './_components/Testiomonials';
 import ContactForm from './_components/ContactForm';
 import './styles/animations.css';
+import Footer from './layout/Footer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <section id="why-us"><WhyEloquentSolutions /></section>
       <section id="testimonials"><Testimonials /></section>
       <section id="contact"><ContactForm /></section>
+      <Footer />
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 function Projects() {
   const [isVisible, setIsVisible] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,99 +29,114 @@ function Projects() {
   const allProjects = [
     {
       id: 1,
-      title: "Hotfocus",
+      title: "Jagran Brand Activation",
       description:
-        "Moment in both your eyes (gaze) with other (how you look and what your eyes see). with esse cilium dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      image: "/placeholder.svg",
-      techStack: ["React", "Node.js", "MongoDB"],
+        "Brand activation to increase brand awareness, drive sales, build lasting relationships with the target audience, and develop customer loyalty by events, campaigns, and interaction.",
+      image: "p1.png",
+      href: "https://play.google.com/store/apps/details?id=com.raj_infosys.jagran_solution&hl=en_US",
     },
     {
       id: 2,
-      title: "Haqkiki",
+      title: "BohraDesign",
       description:
-        "Haqkiki is a social networking app for connecting people across the globe. with esse cilium dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      image: "/placeholder.svg",
-      techStack: ["Flutter", "Firebase", "AWS"],
+        "Welcome to BohraDesign, your go-to hub for top-tier, on-demand services. At BohraDesign, we're transforming the way you find and experience essential services, effortlessly connecting you with skilled professionals ready to assist whenever you need them..",
+      image: "p2.png",
+      href: "https://www.bohradesign.com",
     },
     {
       id: 3,
-      title: "Project Three",
+      title: "Haqkiki",
       description:
-        "Description for project three. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image: "/placeholder.svg",
-      techStack: ["React Native", "GraphQL", "PostgreSQL"],
+        "With Haqkiki, make new acquaintances anywhere in the world! View millions of profiles from your own country or around the world. You can add the accounts you like to your social media apps by sending them friend requests. Maintain control over your social media accounts and choose who to share them with.",
+      image: "p3.png",
+      href: "https://play.google.com/store/apps/details?id=com.haqkiki&hl=en_US",
     },
     {
       id: 4,
-      title: "Project Four",
+      title: "SmartLearn - AI Education Platform",
       description:
-        "Description for project four. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image: "/placeholder.svg",
-      techStack: ["Vue.js", "Django", "MySQL"],
+        "An intelligent learning management system that personalizes education through AI-driven insights. SmartLearn adapts to each student's learning style, providing customized content and progress tracking for optimal educational outcomes.",
+      image: "p4.png",
+      href: "https://smartlearn.edu",
     },
   ];
 
   const visibleProjects = showAll ? allProjects : allProjects.slice(0, 2);
 
+  const handleImageLoad = (id) => {
+    setImageLoaded(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
     <section 
       id="projects-section"
-      className={`w-full min-h-screen bg-[#F2F2F2] relative py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 transform ${
+      className={`w-full min-h-screen bg-gradient-to-b from-[#F2F2F2] to-white relative py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
       <div className="max-w-7xl mx-auto">
-        <h2
-          className={`text-4xl md:text-5xl font-bold text-center text-[#00264D] mb-20 transition-all duration-700 transform ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-4xl md:text-5xl font-bold text-center text-[#00264D] mb-20"
         >
           Our Projects
-        </h2>
+        </motion.h2>
 
         <div className="space-y-20 md:space-y-32">
           {visibleProjects.map((project, index) => (
-            <div 
+            <motion.div 
               key={project.id} 
-              className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 transition-all duration-500 transform ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-              }`}
-              style={{ animationDelay: `${index * 200}ms` }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              className="flex flex-col md:flex-row items-center gap-8 md:gap-16"
             >
               {/* Image Container */}
-              <div className="w-full md:w-1/2 lg:w-[400px] aspect-[4/3] group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <img
+              <motion.div 
+                className="w-full md:w-1/2 lg:w-[400px] aspect-[4/3] group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className={`w-full h-full object-cover transform transition-transform duration-700 ${
+                    imageLoaded[project.id] ? 'scale-100' : 'scale-105 blur-sm'
+                  }`}
+                  onLoad={() => handleImageLoad(project.id)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: imageLoaded[project.id] ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <span key={tech} className="px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              </motion.div>
 
               {/* Content Container */}
-              <div className="w-full md:w-1/2 space-y-6">
-                <h3 className="text-3xl md:text-4xl font-semibold text-[#009688] hover:text-[#00796b] transition-colors duration-300">
+              <motion.div 
+                className="w-full md:w-1/2 space-y-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 20 }}
+                transition={{ duration: 0.7, delay: index * 0.3 }}
+              >
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#009688] hover:text-[#00796b] transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">{project.description}</p>
-                <button
-                  type="button"
-                  className="group relative inline-flex items-center justify-center px-8 py-3 rounded-2xl 
-                    border-2 border-[#00264D] text-[#00264D] font-medium
+                <p className="text-gray-600 leading-relaxed text-sm md:text-base lg:text-lg">
+                  {project.description}
+                </p>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center px-6 py-3 rounded-xl 
+                    border-2 border-[#00264D] text-[#00264D] font-medium text-sm md:text-base
                     hover:bg-[#00264D] hover:text-white transition-all duration-300
                     focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00264D]
                     transform hover:scale-105 active:scale-95"
                 >
-                  <span>Check it Out</span>
+                  <span>View Project</span>
                   <svg 
                     className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
                     fill="none" 
@@ -128,34 +145,41 @@ function Projects() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                </button>
-              </div>
-            </div>
+                </a>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
 
         {/* Show More Button */}
         {allProjects.length > 2 && (
-          <div className="flex justify-center mt-16">
+          <motion.div 
+            className="flex justify-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+          >
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group relative inline-flex items-center justify-center px-8 py-3 rounded-2xl 
+              className="group relative inline-flex items-center justify-center px-8 py-3 rounded-xl 
                 bg-[#009688] text-white font-medium
                 hover:bg-[#00796b] transition-all duration-300
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#009688]
                 transform hover:scale-105 active:scale-95"
             >
               <span>{showAll ? 'Show Less' : 'Show More'}</span>
-              <svg 
-                className={`ml-2 w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+              <motion.svg 
+                animate={{ rotate: showAll ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="ml-2 w-4 h-4"
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              </motion.svg>
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

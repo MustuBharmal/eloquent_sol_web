@@ -11,17 +11,24 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
+
+
+
 // Email Transporter
+
 const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: 587,
-  secure: false,
+  host: "smtp.zoho.com",
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
   },
+  port: 465,
+  secure: true,
+  tls: {
+    rejectUnauthorized: false,
+  },
+  requireTLS: true,
 });
-
 // Routes
 app.post(
   "/send-email",
