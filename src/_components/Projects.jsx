@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function Projects() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,7 +24,7 @@ function Projects() {
     };
   }, []);
 
-  const projects = [
+  const allProjects = [
     {
       id: 1,
       title: "Hotfocus",
@@ -40,7 +41,25 @@ function Projects() {
       image: "/placeholder.svg",
       techStack: ["Flutter", "Firebase", "AWS"],
     },
+    {
+      id: 3,
+      title: "Project Three",
+      description:
+        "Description for project three. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image: "/placeholder.svg",
+      techStack: ["React Native", "GraphQL", "PostgreSQL"],
+    },
+    {
+      id: 4,
+      title: "Project Four",
+      description:
+        "Description for project four. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image: "/placeholder.svg",
+      techStack: ["Vue.js", "Django", "MySQL"],
+    },
   ];
+
+  const visibleProjects = showAll ? allProjects : allProjects.slice(0, 2);
 
   return (
     <section 
@@ -59,7 +78,7 @@ function Projects() {
         </h2>
 
         <div className="space-y-20 md:space-y-32">
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <div 
               key={project.id} 
               className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 transition-all duration-500 transform ${
@@ -114,6 +133,30 @@ function Projects() {
             </div>
           ))}
         </div>
+
+        {/* Show More Button */}
+        {allProjects.length > 2 && (
+          <div className="flex justify-center mt-16">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="group relative inline-flex items-center justify-center px-8 py-3 rounded-2xl 
+                bg-[#009688] text-white font-medium
+                hover:bg-[#00796b] transition-all duration-300
+                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#009688]
+                transform hover:scale-105 active:scale-95"
+            >
+              <span>{showAll ? 'Show Less' : 'Show More'}</span>
+              <svg 
+                className={`ml-2 w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

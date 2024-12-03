@@ -42,14 +42,15 @@ function Hero() {
         <div className="absolute lg:top-[8.3125rem] lg:right-[10.1875rem] md:top-[6rem] md:right-[8rem] top-[4rem] right-[4rem] 
             lg:w-[22.8125rem] lg:h-[25rem] md:w-[20rem] md:h-[22rem] w-[16rem] h-[18rem] 
             flex items-center justify-center rounded-full 
-            animate-slideInRight opacity-0
-            hover:shadow-lg hover:shadow-blue-200/50"
+            animate-slideInTop opacity-0
+            "
             style={{ animationDelay: "0.4s" }}>
           <span className="w-full h-full p-2">
             <img
               src="headermain.svg"
               alt="Innovative Technology"
-              className="w-full h-full object-contain animate-float"
+              className="w-full h-full  object-contain animate-float"
+              style={{ animation: "float 3s ease-in-out infinite" }}
             />
           </span>
         </div>

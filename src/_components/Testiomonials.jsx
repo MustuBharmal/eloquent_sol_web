@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft , ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -82,13 +83,16 @@ const NavigationButton = ({ onClick, direction, disabled }) => (
     whileTap={{ scale: 0.9 }}
     onClick={onClick}
     disabled={disabled}
-    className={`p-3 rounded-full bg-gradient-to-r  text-white
-                transform ${direction === 'prev' ? 'rotate-180' : ''} 
-                transition-all duration-300 hover:shadow-lg disabled:opacity-50`}
+   
   >
-    <img src="arrow.png" alt={direction === 'prev' ? 'Previous' : 'Next'} className="w-6 h-6" />
+    {direction === "prev" ? (
+      <ChevronLeft className="w-6 h-6 text-black" />
+    ) : (
+      <ChevronRight className="w-6 h-6 text-black" />
+    )}
   </motion.button>
 );
+
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
