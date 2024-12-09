@@ -31,3 +31,23 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .testimonial-card {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-card {
+    width: 40rem;
+  }
+
+  h2 {
+    font-size: 4rem;
+  }
+}
+
