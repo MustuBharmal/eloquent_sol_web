@@ -18,7 +18,7 @@ const Services = () => {
     {
       title: "Creative Graphic Design",
       description: "Crafting compelling visuals that resonate with your brand identity.",
-      details: "From logos to marketing materials , documents, and more. We also provide graphic design services for businesses looking to enhance their brand identity and visual appeal.",
+      details: "From logos to marketing materials, documents, and more. We also provide graphic design services for businesses looking to enhance their brand identity and visual appeal.",
       image: "graphic-design.webp",
     },
   ];
@@ -29,7 +29,7 @@ const Services = () => {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="w-full max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-32"
+      className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative"
     >
       {/* Background Gradient */}
       <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
@@ -57,7 +57,7 @@ const Services = () => {
       </motion.div>
 
       {/* Services Cards */}
-      <div className="grid gap-16 md:gap-20 lg:gap-24 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-12 md:gap-16 lg:gap-24 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
           <motion.div
             key={index}
@@ -65,7 +65,7 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="flex flex-col md:flex-col lg:flex-col gap-8"
+            className="flex flex-col gap-8"
           >
             {/* Image Section */}
             <motion.div
@@ -78,6 +78,7 @@ const Services = () => {
                 src={service.image}
                 alt={service.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               />

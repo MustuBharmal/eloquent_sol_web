@@ -15,15 +15,9 @@ function Projects() {
     );
 
     const section = document.getElementById('projects-section');
-    if (section) {
-      observer.observe(section);
-    }
+    if (section) observer.observe(section);
 
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
+    return () => section && observer.unobserve(section);
   }, []);
 
   const allProjects = [
@@ -39,7 +33,7 @@ function Projects() {
       id: 2,
       title: "BohraDesign",
       description:
-        "Welcome to BohraDesign, your go-to hub for top-tier, on-demand services. At BohraDesign, we're transforming the way you find and experience essential services, effortlessly connecting you with skilled professionals ready to assist whenever you need them..",
+        "Welcome to BohraDesign, your go-to hub for top-tier, on-demand services. At BohraDesign, we're transforming the way you find and experience essential services, effortlessly connecting you with skilled professionals ready to assist whenever you need them.",
       image: "p2.png",
       href: "https://www.bohradesign.com",
     },
@@ -47,7 +41,7 @@ function Projects() {
       id: 3,
       title: "Haqkiki",
       description:
-        "With Haqkiki, make new acquaintances anywhere in the world! View millions of profiles from your own country or around the world. You can add the accounts you like to your social media apps by sending them friend requests. Maintain control over your social media accounts and choose who to share them with.",
+        "With Haqkiki, make new acquaintances anywhere in the world! View millions of profiles from your own country or around the world. You can add the accounts you like to your social media apps by sending them friend requests.",
       image: "p3.png",
       href: "https://play.google.com/store/apps/details?id=com.haqkiki&hl=en_US",
     },
@@ -70,116 +64,62 @@ function Projects() {
   return (
     <section 
       id="projects-section"
-      className={`w-full min-h-screen bg-gradient-to-b from-[#F2F2F2] to-white relative py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 transform ${
+      className={`w-full min-h-screen bg-gradient-to-b from-[#F2F2F2] to-white relative py-20 px-6 sm:px-12 transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
       <div className="max-w-7xl mx-auto">
         <motion.h2
+          className="text-4xl md:text-5xl font-bold text-center text-[#00264D] mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-bold text-center text-[#00264D] mb-20"
+          transition={{ duration: 0.7 }}
         >
           Our Projects
         </motion.h2>
 
-        <div className="space-y-20 md:space-y-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           {visibleProjects.map((project, index) => (
             <motion.div 
-              key={project.id} 
+              key={project.id}
+              className="flex flex-col items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
-              className="flex flex-col md:flex-row items-center gap-8 md:gap-16"
             >
-              {/* Image Container */}
-              <motion.div 
-                className="w-full md:w-1/2 lg:w-[400px] aspect-[4/3] group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <motion.img
+                src={project.image}
+                alt={project.title}
+                className={`w-full h-64 object-cover rounded-xl shadow-lg transition-transform duration-700 ${
+                  imageLoaded[project.id] ? 'scale-100' : 'scale-105 blur-sm'
+                }`}
+                onLoad={() => handleImageLoad(project.id)}
+              />
+              <h3 className="mt-4 text-2xl font-semibold">{project.title}</h3>
+              <p className="mt-2 text-gray-600">{project.description}</p>
+              <a 
+                href={project.href} 
+                target="_blank" 
+                className="mt-4 px-4 py-2 bg-[#009688] text-white rounded-xl hover:bg-[#00796b] transition-all"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <motion.img
-                  src={project.image}
-                  alt={project.title}
-                  className={`w-full h-full object-cover transform transition-transform duration-700 ${
-                    imageLoaded[project.id] ? 'scale-100' : 'scale-105 blur-sm'
-                  }`}
-                  onLoad={() => handleImageLoad(project.id)}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: imageLoaded[project.id] ? 1 : 0 }}
-                  transition={{ duration: 0.5 }}
-                />
-              </motion.div>
-
-              {/* Content Container */}
-              <motion.div 
-                className="w-full md:w-1/2 space-y-6"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 20 }}
-                transition={{ duration: 0.7, delay: index * 0.3 }}
-              >
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#009688] hover:text-[#00796b] transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base lg:text-lg">
-                  {project.description}
-                </p>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center justify-center px-6 py-3 rounded-xl 
-                    border-2 border-[#00264D] text-[#00264D] font-medium text-sm md:text-base
-                    hover:bg-[#00264D] hover:text-white transition-all duration-300
-                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00264D]
-                    transform hover:scale-105 active:scale-95"
-                >
-                  <span>View Project</span>
-                  <svg 
-                    className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </motion.div>
+                View Project
+              </a>
             </motion.div>
           ))}
         </div>
 
-        {/* Show More Button */}
         {allProjects.length > 2 && (
-          <motion.div 
-            className="flex justify-center mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-          >
-            <button
+          <div className="flex justify-center mt-16">
+            <motion.button
               onClick={() => setShowAll(!showAll)}
-              className="group relative inline-flex items-center justify-center px-8 py-3 rounded-xl 
-                bg-[#009688] text-white font-medium
-                hover:bg-[#00796b] transition-all duration-300
-                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#009688]
-                transform hover:scale-105 active:scale-95"
+              className="px-8 py-3 bg-[#009688] text-white rounded-xl hover:bg-[#00796b] transition-all"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <span>{showAll ? 'Show Less' : 'Show More'}</span>
-              <motion.svg 
-                animate={{ rotate: showAll ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="ml-2 w-4 h-4"
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </motion.svg>
-            </button>
-          </motion.div>
+              {showAll ? 'Show Less' : 'Show More'}
+            </motion.button>
+          </div>
         )}
       </div>
     </section>
