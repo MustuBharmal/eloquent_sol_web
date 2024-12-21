@@ -14,8 +14,8 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Scroll to section after route change
@@ -28,10 +28,10 @@ const Navbar = () => {
 
   // Unified navigation handler for desktop and mobile
   const handleNavigation = (sectionId) => {
-    if (location.pathname !== "/") {
+    if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage first
       setTargetSection(sectionId); // Set the target section to scroll after navigation
-      navigate("/"); // Navigate to homepage
+      navigate('/'); // Navigate to homepage
     } else {
       // If already on homepage, scroll directly to the section
       scrollToSection(sectionId);
@@ -43,26 +43,25 @@ const Navbar = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   // Handle logo click
   const handleLogoClick = () => {
-    if (location.pathname !== "/") {
-      navigate("/"); // Navigate to homepage
+    if (location.pathname !== '/') {
+      navigate('/'); // Navigate to homepage
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
     }
   };
 
   const navItems = [
-    { label: "Services", path: "services" },
-    { label: "Projects", path: "projects" },
-    { label: "Tech Stack", path: "tech-stack" },
-    { label: "Why Us", path: "why-us" },
-    { label: "Testimonials", path: "testimonials" },
-    { label: "Contact Us", path: "contact" },
+    { label: 'Services', path: 'services' },
+    { label: 'Projects', path: 'projects' },
+    { label: 'Tech Stack', path: 'tech-stack' },
+    { label: 'Why Us', path: 'why-us' },
+    { label: 'Testimonials', path: 'testimonials' },
   ];
 
   return (
@@ -70,20 +69,15 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`w-full h-20 fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-lg"
-          : "bg-white shadow-md"
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-white shadow-md'
       }`}
     >
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
         {/* Logo Click */}
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <button onClick={handleLogoClick} className="flex-shrink-0">
-            <img
-              src="/Logo-02.png"
-              alt="Logo"
-              className="h-10 sm:h-12 w-auto"
-            />
+            <img src="/Logo-02.png" alt="Logo" className="h-10 sm:h-12 w-auto" />
           </button>
         </motion.div>
 
@@ -109,10 +103,10 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 lg:hidden">
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
             whileTap={{ scale: 0.9 }}
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -131,6 +125,16 @@ const Navbar = () => {
             </div>
           </motion.button>
         </div>
+
+        {/* Contact Us Button */}
+        <motion.button
+          onClick={() => handleNavigation('contact')}
+          className="hidden lg:block text-white bg-[#009688] hover:bg-[#00796B] font-medium text-sm uppercase tracking-wide px-4 py-2 rounded-lg transition-colors duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Contact Us
+        </motion.button>
       </div>
 
       {/* Mobile Menu */}
@@ -138,7 +142,7 @@ const Navbar = () => {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-t"
           >
@@ -146,10 +150,9 @@ const Navbar = () => {
               {navItems.map((item, index) => (
                 <motion.button
                   key={index}
-                  type="button" 
                   onClick={() => handleNavigation(item.path)}
                   className="block w-full text-left px-4 py-2 text-gray-700 hover:text-[#00264D] hover:bg-gray-50 rounded-lg
-                 font-medium text-sm uppercase tracking-wide transition-colors duration-200"
+                    font-medium text-sm uppercase tracking-wide transition-colors duration-200"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -157,6 +160,16 @@ const Navbar = () => {
                   {item.label}
                 </motion.button>
               ))}
+              <motion.button
+                onClick={() => handleNavigation('contact')}
+                className="block w-full text-left px-4 py-2 text-white bg-[#009688] hover:bg-[#00796B] rounded-lg
+                  font-medium text-sm uppercase tracking-wide transition-colors duration-200"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+              >
+                Contact Us
+              </motion.button>
             </div>
           </motion.div>
         )}
