@@ -51,7 +51,7 @@ function TechStack() {
   };
 
   return (
-    <div className="w-full bg-gray-50 overflow-hidden">
+    <div className="w-full bg-gradient-to-br from-white to-gray-100 overflow-hidden">
       <section className="py-10 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title */}
@@ -59,7 +59,7 @@ function TechStack() {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-extrabold text-center text-[#00264D] mb-8"
+            className="text-3xl md:text-5xl font-extrabold text-center text-[#00264D] mb-8"
           >
             Our <span className="text-teal-500">Tech Stack</span>
           </motion.h2>
@@ -71,9 +71,9 @@ function TechStack() {
                 <TabsTrigger
                   key={stack}
                   value={stack}
-                  className={`px-3 sm:px-6 py-2 text-xs sm:text-sm text-center rounded-lg transition-all duration-200 ${
+                  className={`px-3 sm:px-6 py-2 text-xs sm:text-sm text-center rounded-full transition-all duration-200 ${
                     activeTab === stack
-                      ? "bg-teal-500 text-white font-semibold"
+                      ? "bg-teal-500 text-white font-semibold shadow-md"
                       : "bg-white text-gray-800 hover:bg-teal-100"
                   }`}
                 >
@@ -98,8 +98,8 @@ function TechStack() {
                           variants={itemVariants}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="group relative p-3 sm:p-4 bg-white rounded-xl shadow-md 
-                            hover:shadow-xl transition-all duration-200 cursor-pointer"
+                          className="group relative p-4 bg-white rounded-2xl shadow-lg 
+                            hover:shadow-2xl transition-all duration-300 cursor-pointer"
                         >
                           <div className="flex justify-center items-center">
                             <motion.img
@@ -112,13 +112,13 @@ function TechStack() {
                               }}
                               src={tech.icon}
                               alt={tech.name}
-                              className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 
+                              className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 
                                 transition-transform duration-300 
                                 group-hover:rotate-6"
                             />
                           </div>
-                          <h3 className="mt-2 sm:mt-4 text-center text-xs sm:text-sm md:text-base 
-                            font-semibold group-hover:text-teal-500 transition-colors">
+                          <h3 className="mt-4 text-center text-sm sm:text-base font-bold text-gray-900 
+                            group-hover:text-teal-500 transition-colors">
                             {tech.name}
                           </h3>
                         </motion.div>

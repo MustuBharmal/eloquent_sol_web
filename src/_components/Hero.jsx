@@ -32,12 +32,12 @@ function Hero() {
 
   return (
     <div 
-      className="min-h-screen  bg-white relative overflow-hidden"
+      className=" bg-white relative overflow-hidden"
       style={{
         background: "linear-gradient(111.98deg, rgba(188, 232, 227, 0.01) 31.94%, rgba(93, 204, 193, 0.3) 85.58%)",
       }}
     >
-      <main className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[12rem] sm:pt-30 md:pt-24 lg:pt-32">
+      <main className="relative w-full  px-4 sm:px-6 lg:px-8 pt-[12rem] sm:pt-30 md:pt-24 lg:pt-32">
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text Content */}
           <div className="space-y-4 text-center lg:text-left order-2 lg:order-1">

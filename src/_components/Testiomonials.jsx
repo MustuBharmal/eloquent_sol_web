@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -8,7 +8,7 @@ const testimonials = [
     quote: "Eloquent Solutions has been instrumental in delivering several apps for us with exceptional precision in design and flawless code.",
     name: "Raj",
     role: "CEO, Raj Information Systems Pvt Ltd",
-    avatar: "raj.jpg",
+    avatar: "/raj.jpg",
   },
   {
     id: 2,
@@ -22,60 +22,60 @@ const testimonials = [
     quote: "We've had the pleasure of working with Eloquent Solutions on multiple projects, and their timely delivery has been outstanding.",
     name: "Perfect Solutions",
     role: "CEO, Perfect Solutions",
-    avatar: "person.png",
+    avatar: "/avatar-3.jpg",
   },
 ];
 
 const TestimonialCard = ({ testimonial, direction }) => (
   <motion.div
-    initial={{ opacity: 0, x: direction === "right" ? 50 : -50 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: direction === "right" ? -50 : 50 }}
-    transition={{ duration: 0.5, ease: "easeInOut" }}
-    className="relative w-full md:w-[40rem] bg-white shadow-2xl rounded-xl p-10 md:p-16 border border-[#009688] flex flex-col justify-between"
+    key={testimonial.id}
+    initial={{ opacity: 0, scale: 0.95, x: direction === "right" ? 50 : -50 }}
+    animate={{ opacity: 1, scale: 1, x: 0 }}
+    exit={{ opacity: 0, scale: 0.95, x: direction === "right" ? -50 : 50 }}
+    transition={{ 
+      duration: 0.4, 
+      ease: "easeInOut",
+      type: "spring",
+      stiffness: 100
+    }}
+    className="relative w-full    max-w-xl mx-4 bg-white shadow-2xl rounded-xl p-6 md:p-10 border border-[#009688] flex flex-col justify-between"
   >
-    {/* Top Quote Icon */}
-    <img 
-      src="/quote.png" 
-      alt="quote" 
-      className="w-12 h-12 absolute top-4 left-4 opacity-20"
-    />
-
-    <p className="text-lg md:text-2xl text-gray-700 leading-relaxed mb-8">
+    <p className="text-base md:text-2xl text-gray-700 leading-relaxed mb-8 hidden md:block">
       "{testimonial.quote}"
+    </p>
+    
+    <p className="text-base text-gray-700 leading-relaxed mb-8 md:hidden">
+      {testimonial.quote}
     </p>
 
     {/* User Profile Section */}
-    <div className="flex items-center mt-10">
+    <div className="flex items-center mt-6">
       <img
         src={testimonial.avatar}
         alt={testimonial.name}
-        className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-[#009688]"
+        className="w-12 h-12 md:w-20 md:h-20 rounded-full object-cover border-2 border-[#009688]"
       />
       <div className="ml-4">
-        <h3 className="text-xl font-semibold text-[#00264D]">{testimonial.name}</h3>
-        <p className="text-sm text-gray-500">{testimonial.role}</p>
+        <h3 className="text-lg md:text-xl font-semibold text-[#00264D]">
+          {testimonial.name}
+        </h3>
+        <p className="text-xs md:text-sm text-gray-500">
+          {testimonial.role}
+        </p>
       </div>
     </div>
-
-    {/* Bottom Quote Icon */}
-    <img 
-      src="/quote.png" 
-      alt="quote" 
-      className="w-12 h-12 absolute bottom-4 right-4 opacity-20 transform rotate-180"
-    />
   </motion.div>
 );
 
 const NavigationButton = ({ onClick, direction }) => (
   <button
     onClick={onClick}
-    className="p-4 bg-white rounded-full shadow-md hover:shadow-lg transition-all"
+    className="p-4  rounded-full shadow-md hover:shadow-lg transition-all"
   >
     {direction === "prev" ? (
-      <ChevronLeft className="w-6 h-6 text-[#00264D]" />
+      <ChevronLeft className="w-6 h-6 text-white" />
     ) : (
-      <ChevronRight className="w-6 h-6 text-[#00264D]" />
+      <ChevronRight className="w-6 h-6 text-white" />
     )}
   </button>
 );
@@ -95,7 +95,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-[#009688] to-[#00264D] py-20 text-white">
+    <section className="relative  bg-gradient-to-br from-[#009688] to-[#00264D] py-20 text-white">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
           What Our Clients Say

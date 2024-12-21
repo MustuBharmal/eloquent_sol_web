@@ -7,40 +7,62 @@ const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [targetSection, setTargetSection] = useState(null);
 
+  // Handle scroll effect for sticky header
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigation = (path) => {
-    if (location.pathname === '/') {
-      const element = document.getElementById(path.replace('/', ''));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(path.replace('/', ''));
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+  // Scroll to section after route change
+  useEffect(() => {
+    if (targetSection) {
+      scrollToSection(targetSection);
+      setTargetSection(null); // Reset the target after scrolling
     }
-    setIsOpen(false);
+  }, [location, targetSection]);
+
+  // Unified navigation handler for desktop and mobile
+  const handleNavigation = (sectionId) => {
+    if (location.pathname !== "/") {
+      // If not on homepage, navigate to homepage first
+      setTargetSection(sectionId); // Set the target section to scroll after navigation
+      navigate("/"); // Navigate to homepage
+    } else {
+      // If already on homepage, scroll directly to the section
+      scrollToSection(sectionId);
+    }
+    setIsOpen(false); // Close mobile menu
+  };
+
+  // Scroll to the section by id
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Handle logo click
+  const handleLogoClick = () => {
+    if (location.pathname !== "/") {
+      navigate("/"); // Navigate to homepage
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top
+    }
   };
 
   const navItems = [
-    { label: 'Services', path: 'services' },
-    { label: 'Projects', path: 'projects' },
-    { label: 'Tech Stack', path: 'tech-stack' },
-    { label: 'Why us', path: 'why-us' },
-    { label: 'Testimonials', path: 'testimonials' },
+    { label: "Services", path: "services" },
+    { label: "Projects", path: "projects" },
+    { label: "Tech Stack", path: "tech-stack" },
+    { label: "Why Us", path: "why-us" },
+    { label: "Testimonials", path: "testimonials" },
+    { label: "Contact Us", path: "contact" },
   ];
 
   return (
@@ -48,59 +70,46 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`w-full h-20 fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-white shadow-md'
+        scrolled
+          ? "bg-white/90 backdrop-blur-md shadow-lg"
+          : "bg-white shadow-md"
       }`}
     >
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        <div className="flex items-center">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link to="/" className="flex-shrink-0">
-              <img
-                src="/Logo-02.png"
-                alt="Logo"
-                className="h-10 sm:h-12 w-auto"
+        {/* Logo Click */}
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <button onClick={handleLogoClick} className="flex-shrink-0">
+            <img
+              src="/Logo-02.png"
+              alt="Logo"
+              className="h-10 sm:h-12 w-auto"
+            />
+          </button>
+        </motion.div>
+
+        {/* Desktop Navigation */}
+        <nav className="ml-8 lg:ml-16 hidden lg:flex space-x-6 xl:space-x-8">
+          {navItems.map((item, index) => (
+            <motion.button
+              key={index}
+              onClick={() => handleNavigation(item.path)}
+              className="text-gray-700 hover:text-[#00264D] font-medium text-sm uppercase tracking-wide relative group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {item.label}
+              <motion.div
+                className="absolute bottom-0 left-0 w-full h-0.5 bg-[#009688] origin-left"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.2 }}
               />
-            </Link>
-          </motion.div>
+            </motion.button>
+          ))}
+        </nav>
 
-          {/* Desktop Navigation */}
-          <nav className="ml-8 lg:ml-16 hidden lg:flex space-x-6 xl:space-x-8">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={index}
-                onClick={() => handleNavigation(item.path)}
-                className="text-gray-700 hover:text-[#00264D] font-medium text-sm uppercase tracking-wide relative group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.label}
-                <motion.div
-                  className="absolute bottom-0 left-0 w-full h-0.5 bg-[#009688] origin-left"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.2 }}
-                />
-              </motion.button>
-            ))}
-          </nav>
-        </div>
-
-        {/* Contact Button */}
+        {/* Mobile Menu Button */}
         <div className="flex items-center space-x-4">
-          <motion.button
-            onClick={() => handleNavigation('contact')}
-            className="bg-[#00264D] text-white px-4 sm:px-6 py-2 rounded-lg text-sm font-medium
-              hover:bg-[#003366] transition-all duration-300 hidden sm:inline-flex items-center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Contact Us
-          </motion.button>
-
-          {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -129,7 +138,7 @@ const Navbar = () => {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-t"
           >
@@ -137,9 +146,10 @@ const Navbar = () => {
               {navItems.map((item, index) => (
                 <motion.button
                   key={index}
+                  type="button" 
                   onClick={() => handleNavigation(item.path)}
                   className="block w-full text-left px-4 py-2 text-gray-700 hover:text-[#00264D] hover:bg-gray-50 rounded-lg
-                    font-medium text-sm uppercase tracking-wide transition-colors duration-200"
+                 font-medium text-sm uppercase tracking-wide transition-colors duration-200"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -147,16 +157,6 @@ const Navbar = () => {
                   {item.label}
                 </motion.button>
               ))}
-              <motion.button
-                onClick={() => handleNavigation('contact')}
-                className="block w-full text-center px-4 py-2 bg-[#00264D] text-white rounded-lg
-                  font-medium text-sm uppercase tracking-wide hover:bg-[#003366] transition-colors duration-200"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navItems.length * 0.1 }}
-              >
-                Contact Us
-              </motion.button>
             </div>
           </motion.div>
         )}
