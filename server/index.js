@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-const { body, validationResult } = require("express-validator");
+import express from "express";
+import cors from "cors";
+import nodemailer from "nodemailer";
+import { body, validationResult } from "express-validator";
 
 
 const app = express();
@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 
 
 
@@ -17,7 +18,7 @@ app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 // Email Transporter
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.zoho.com",
+  host: process.env.MAIL_HOST,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,

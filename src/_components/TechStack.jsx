@@ -2,29 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const techStacks = {
-  "App Development": [
-    { name: "Dart", icon: "Dart 1.svg" },
-    { name: "Flutter", icon: "Flutter 1.svg" },
-    { name: "Kotlin", icon: "kotalin.svg" },
-    { name: "Postman", icon: "postman 1.svg" },
-  ],
-  "Web Development": [
-    { name: "React", icon: "react.svg" },
-    { name: "Next.js", icon: "nextjs-icon.svg" },
-    { name: "Node.js", icon: "nodejs-icon.svg" },
-    { name: "MongoDB", icon: "mongodb.svg" },
-  ],
-  "Graphic Design": [
-    { name: "Adobe Photoshop", icon: "photoshop 1.svg" },
-    { name: "Figma", icon: "figma 1.svg" },
-    { name: "Canva", icon: "canva 1.svg" },
-    { name: "Illustrator", icon: "adobe_illustrator.svg" },
-  ],
-};
+import { techStacks } from "../constant/service";
 
 function TechStack() {
   const [activeTab, setActiveTab] = useState("App Development");
+
+  console.log(techStacks)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -84,6 +67,7 @@ function TechStack() {
 
             <div className="mt-8">
               {Object.entries(techStacks).map(([stack, technologies]) => (
+                
                 <TabsContent key={stack} value={stack}>
                   <motion.div 
                     variants={containerVariants}

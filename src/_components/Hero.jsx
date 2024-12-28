@@ -21,9 +21,8 @@ function Hero() {
   const handleGetStarted = () => {
     if (isValid) {
       // Construct Gmail compose URL
-      const subject = encodeURIComponent("Inquiry from Eloquent Solutions Website");
-      const body = encodeURIComponent(`Email: ${email}\n\nMessage: I'm interested in learning more about Eloquent Solutions.`);
-      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@eloquentsolutions.in&su=${subject}&body=${body}`;
+      const subject = encodeURIComponent("Inquiry from Eloquent Solutions ");
+      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@eloquentsolutions.in&su=${subject}`;
       
       // Open Gmail compose window
       window.open(gmailComposeUrl, '_blank');
@@ -32,12 +31,12 @@ function Hero() {
 
   return (
     <div 
-      className=" bg-white relative overflow-hidden"
+      className="bg-white relative overflow-hidden"
       style={{
         background: "linear-gradient(111.98deg, rgba(188, 232, 227, 0.01) 31.94%, rgba(93, 204, 193, 0.3) 85.58%)",
       }}
     >
-      <main className="relative w-full  px-4 sm:px-6 lg:px-8 pt-[12rem] sm:pt-30 md:pt-24 lg:pt-32">
+      <main className="relative w-full px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 md:pt-48 lg:pt-56">
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text Content */}
           <div className="space-y-4 text-center lg:text-left order-2 lg:order-1">
@@ -112,7 +111,7 @@ function Hero() {
                        animate-slideInTop opacity-0"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="w-full max-w-md  h-auto flex items-center justify-center">
+            <div className="w-full max-w-md h-auto flex items-center justify-center">
               <img 
                 src="headermain.svg"
                 alt="Innovative Technology"
@@ -128,93 +127,7 @@ function Hero() {
       </main>
 
       {/* Custom Animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0) rotate(0);
-          }
-          50% {
-            transform: translateY(-20px) rotate(2deg);
-          }
-        }
-
-        @keyframes slideInLeft {
-          0% {
-            opacity: 0;
-            transform: translateX(-100px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes slideInRight {
-          0% {
-            opacity: 0;
-            transform: translateX(100px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-        }
-
-        @keyframes slideInTop {
-          0% {
-            opacity: 0;
-            transform: translateY(-100px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-slideInLeft {
-          animation: slideInLeft 1s ease-out forwards;
-        }
-
-        .animate-slideInRight {
-          animation: slideInRight 1s ease-out forwards;
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 1s ease-out forwards;
-        }
-
-        .animate-pulse {
-          animation: pulse 2s ease-in-out infinite;
-        }
-
-        .animate-slideInTop {
-          animation: slideInTop 1s ease-out forwards;
-        }
-      `}</style>
+  
     </div>
   );
 }

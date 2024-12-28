@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const WhyEloquentSolutions = () => {
+  
   const items = [
     {
       icon: (
@@ -12,7 +13,8 @@ const WhyEloquentSolutions = () => {
         />
       ),
       title: "Designing Ideas, Building Futures",
-      content: "Turning your vision into digital experiences that inspire and engage",
+      content:
+        "Turning your vision into digital experiences that inspire and engage",
     },
     {
       icon: (
@@ -23,7 +25,8 @@ const WhyEloquentSolutions = () => {
         />
       ),
       title: "Empowering Brands with Technology",
-      content: "Leveraging the latest tools to create apps and websites that drive results",
+      content:
+        "Leveraging the latest tools to create apps and websites that drive results",
     },
     {
       icon: (
@@ -34,10 +37,10 @@ const WhyEloquentSolutions = () => {
         />
       ),
       title: "Innovate, Create, Inspire",
-      content: "Blending creativity and strategy to deliver designs that captivate",
+      content:
+        "Blending creativity and strategy to deliver designs that captivate",
     },
   ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

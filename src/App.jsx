@@ -7,7 +7,6 @@ import TechStack from './_components/TechStack';
 import WhyEloquentSolutions from './_components/WhyEloquentSolutions';
 import Testimonials from './_components/Testiomonials';
 import ContactForm from './_components/ContactForm';
-import './styles/animations.css';
 import Footer from './layout/Footer';
 
 function App() {

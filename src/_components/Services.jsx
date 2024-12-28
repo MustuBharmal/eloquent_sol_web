@@ -1,28 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import { services } from "../constant/service";
 const Services = () => {
-  const services = [
-    {
-      title: "Custom App Development",
-      description: "Building intuitive, scalable, and high-performance mobile applications tailored to your business needs.",
-      details: "Whether it's Android, iOS, or cross-platform, we deliver apps that enhance user experiences and drive results.",
-      image: "app-dev.png",
-    },
-    {
-      title: "Web Design & Development",
-      description: "Creating responsive and visually stunning websites that leave lasting impressions.",
-      details: "From e-commerce platforms to portfolio websites, we ensure your online presence stands out with cutting-edge design and functionality.",
-      image: "web-dev.webp",
-    },
-    {
-      title: "Creative Graphic Design",
-      description: "Crafting compelling visuals that resonate with your brand identity.",
-      details: "From logos to marketing materials, documents, and more. We also provide graphic design services for businesses looking to enhance their brand identity and visual appeal.",
-      image: "graphic-design.webp",
-    },
-  ];
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -38,7 +17,7 @@ const Services = () => {
           style={{
             background: `radial-gradient(circle at 20% 20%, rgba(0, 150, 136, 0.15) 0%, rgba(0, 150, 136, 0) 25%), 
                          radial-gradient(circle at 80% 50%, rgba(0, 38, 77, 0.1) 0%, rgba(0, 38, 77, 0) 30%), 
-                         linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(105, 167, 231, 0.05) 100%)`
+                         linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(105, 167, 231, 0.05) 100%)`,
           }}
         />
       </div>
