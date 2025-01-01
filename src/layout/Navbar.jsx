@@ -67,7 +67,7 @@ const Navbar = () => {
         {/* Logo Click */}
         <div className="flex-shrink-0">
           <button onClick={handleLogoClick} className="flex-shrink-0">
-            <img src="/Logo-02.png" alt="Logo" className="h-10 sm:h-12 w-auto" />
+            <img src="assets/images/Logo-02.png" alt="Logo" className="h-10 sm:h-12 w-auto" />
           </button>
         </div>
 

@@ -183,13 +183,9 @@ function ContactForm() {
             We'd love to <br /> hear from you
           </h2>
           <div className="space-y-4">
-            <ContactInfo icon="phone.png" text="+916352329052" />
-            <ContactInfo icon="email.png" text="info@eloquentsolutions.in" />
-            <ContactInfo
-              icon="linkedln.png"
-              text="linkedin.com/company/eloquent-solutions"
-              link="https://linkedin.com/company/eloquent-solutions/"
-            />
+            <ContactInfo icon="assets/images/phone.png" text="+916352329052" />
+            <ContactInfo icon="assets/images/email.png" text="info@eloquentsolutions.in" />
+            <ContactInfo icon="assets/images/linkedln.png" text="linkedin.com/company/eloquent-solutions" link="https://linkedin.com/company/eloquent-solutions/" />
           </div>
         </div>
       </div>

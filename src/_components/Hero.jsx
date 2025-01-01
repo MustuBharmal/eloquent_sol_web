@@ -113,7 +113,7 @@ function Hero() {
           >
             <div className="w-full max-w-md h-auto flex items-center justify-center">
               <img 
-                src="headermain.svg"
+                src="assets/icons/headermain.svg"
                 alt="Innovative Technology"
                 className="w-full h-full max-h-64 sm:max-h-80 lg:max-h-[25rem] object-contain animate-float"
               />

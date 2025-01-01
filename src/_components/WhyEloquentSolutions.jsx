@@ -7,7 +7,7 @@ const WhyEloquentSolutions = () => {
     {
       icon: (
         <img
-          src="setting image.png"
+          src="assets/images/setting image.png"
           alt="Design Icon"
           className="w-[3.5rem] md:w-[4.5rem] lg:w-[5.625rem] h-[3.5rem] md:h-[4.5rem] lg:h-[5.625rem] transition-transform duration-300 group-hover:scale-110"
         />
@@ -19,7 +19,7 @@ const WhyEloquentSolutions = () => {
     {
       icon: (
         <img
-          src="robo image.png"
+          src="assets/images/robo-image.png"
           alt="Technology Icon"
           className="w-[3.5rem] md:w-[4.5rem] lg:w-[5.625rem] h-[3.5rem] md:h-[4.5rem] lg:h-[5.625rem] transition-transform duration-300 group-hover:scale-110"
         />
@@ -31,7 +31,7 @@ const WhyEloquentSolutions = () => {
     {
       icon: (
         <img
-          src="idea image.png"
+          src="assets/images/idea image.png"
           alt="Innovation Icon"
           className="w-[3.5rem] md:w-[4.5rem] lg:w-[5.625rem] h-[3.5rem] md:h-[4.5rem] lg:h-[5.625rem] transition-transform duration-300 group-hover:scale-110"
         />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { testimonials } from "../constant/service";
@@ -35,7 +35,7 @@ const TestimonialCard = ({ testimonial }) => (
 const NavigationButton = ({ onClick, direction }) => (
   <button
     onClick={onClick}
-    className="p-4 rounded-full shadow-md hover:shadow-lg transition-all bg-[#009688] text-white"
+    className="p-4 rounded-full shadow-md hover:shadow-lg transition-all bg-[#009688] text-white hidden md:block"
   >
     {direction === "prev" ? (
       <ChevronLeft className="w-6 h-6" />
@@ -55,6 +55,24 @@ const Testimonials = () => {
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const handleMediaQueryChange = (e) => {
+      if (e.matches) {
+        const interval = setInterval(handleNext, 3000); // Change slide every 3 seconds
+        return () => clearInterval(interval);
+      }
+    };
+
+    if (mediaQuery.matches) {
+      const interval = setInterval(handleNext, 3000); // Change slide every 3 seconds
+      return () => clearInterval(interval);
+    }
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
+  }, []);
 
   return (
     <section className="relative bg-gradient-to-br from-[#009688] to-[#00264D] py-20 text-white">
