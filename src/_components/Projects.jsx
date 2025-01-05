@@ -45,13 +45,13 @@ function Projects() {
           {visibleProjects.map((project, index) => (
             <div 
               key={project.id}
-              className="flex flex-col items-center  bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-700"
+              className="flex flex-col items-center bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-700"
               style={{ transform: isVisible ? 'translateY(0)' : 'translateY(50px)', opacity: isVisible ? 1 : 0 }}
             >
               <img
                 src={project.image}
                 alt={project.title}
-                className={`w-full h-48 object-cover transition-transform duration-700 ${
+                className={`w-full h-48 object-contain transition-transform duration-700 ${
                   imageLoaded[project.id] ? 'scale-100' : 'scale-105 blur-sm'
                 }`}
                 onLoad={() => handleImageLoad(project.id)}

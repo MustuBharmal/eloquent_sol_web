@@ -12,7 +12,7 @@ export const allProjects = [
     title: "Jagran Brand Activation",
     description:
       "Brand activation to increase brand awareness, drive sales, build lasting relationships with the target audience, and develop customer loyalty by events, campaigns, and interaction.",
-    image: "assets/images/p1.png",
+    image: "assets/images/jagran.jpg",
     href: "https://play.google.com/store/apps/details?id=com.raj_infosys.jagran_solution&hl=en_US",
   },
   {
@@ -20,7 +20,7 @@ export const allProjects = [
     title: "BohraDesign",
     description:
       "Welcome to BohraDesign, your go-to hub for top-tier, on-demand services. At BohraDesign, we're transforming the way you find and experience essential services, effortlessly connecting you with skilled professionals ready to assist whenever you need them.",
-    image: "assets/images/p2.png",
+    image: "assets/images/bahraldesign.jpg",
     href: "https://www.bohradesign.com",
   },
   {
@@ -28,7 +28,7 @@ export const allProjects = [
     title: "Haqkiki",
     description:
       "With Haqkiki, make new acquaintances anywhere in the world! View millions of profiles from your own country or around the world. You can add the accounts you like to your social media apps by sending them friend requests.",
-    image: "assets/images/p3.png",
+    image: "assets/images/logh.jpg",
     href: "https://play.google.com/store/apps/details?id=com.haqkiki&hl=en_US",
   },
   {
