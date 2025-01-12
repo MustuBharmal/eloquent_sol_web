@@ -26,7 +26,7 @@ const Services = () => {
       {/* Services Cards */}
       <div className="grid gap-12 md:gap-16 lg:gap-24 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
-          <div key={index} className="flex flex-col gap-8">
+          <div key={index} className="flex flex-col gap-8 bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300">
             {/* Image Section */}
             <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg group">
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -39,8 +39,8 @@ const Services = () => {
             </div>
 
             {/* Content Section */}
-            <div className="flex-1 space-y-4 text-center">
-              <h3 className="font-montserrat font-semibold text-xl md:text-2xl lg:text-3xl text-[#009688]">
+            <div className="flex-1 space-y-4 flex flex-col justify-between">
+              <h3 className="font-montserrat text-center font-semibold text-xl md:text-2xl lg:text-3xl text-[#009688]">
                 {service.title}
               </h3>
               <p className="text-gray-700 text-sm md:text-base lg:text-lg">
@@ -49,7 +49,7 @@ const Services = () => {
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                 {service.details}
               </p>
-              <button className="mt-4 px-6 py-3 rounded-lg border-2 border-[#00264D] font-medium text-[#00264D] bg-transparent hover:bg-[#00264D] hover:text-white transition-all duration-300">
+              <button className="mt-4 px-6 py-3 rounded-lg border-2 border-[#00264D] font-medium text-[#00264D] bg-transparent hover:bg-[#00264D] hover:text-white transition-all duration-300 self-center">
                 Know more
               </button>
             </div>

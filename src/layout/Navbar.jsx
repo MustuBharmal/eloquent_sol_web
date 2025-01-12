@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [targetSection, setTargetSection] = useState(null);
+  const [activeSection, setActiveSection] = useState(null);
 
   // Handle scroll effect for sticky header
   useEffect(() => {
@@ -28,6 +29,7 @@ const Navbar = () => {
 
   // Unified navigation handler for desktop and mobile
   const handleNavigation = (sectionId) => {
+    setActiveSection(sectionId); // Set the active section
     if (location.pathname !== '/') {
       // If not on homepage, navigate to homepage first
       setTargetSection(sectionId); // Set the target section to scroll after navigation
@@ -49,6 +51,7 @@ const Navbar = () => {
 
   // Handle logo click
   const handleLogoClick = () => {
+    setActiveSection(null); // Reset the active section
     if (location.pathname !== '/') {
       navigate('/'); // Navigate to homepage
     } else {
@@ -77,16 +80,36 @@ const Navbar = () => {
             <button
               key={index}
               onClick={() => handleNavigation(item.path)}
-              className="text-gray-700 hover:text-[#00264D] font-medium text-sm uppercase tracking-wide relative group"
+              className={`text-gray-700 hover:text-[#00264D] font-medium text-sm uppercase tracking-wide relative group ${
+                activeSection === item.path ? 'text-[#009688]' : ''
+              }`}
             >
               {item.label}
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#009688] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+              <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#009688] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200 ${
+                activeSection === item.path ? 'scale-x-100' : ''
+              }`} />
             </button>
           ))}
         </nav>
 
+        {/* Contact Us Button */}
+        <div className="hidden lg:flex">
+          <button
+            onClick={() => handleNavigation('contact')}
+            className="text-white bg-[#009688] hover:bg-[#00796B] font-medium text-sm uppercase tracking-wide px-4 py-2 rounded-lg transition-colors duration-300"
+          >
+            Contact Us
+          </button>
+        </div>
+
         {/* Mobile Menu Button */}
         <div className="flex items-center space-x-4 lg:hidden">
+          <button
+            onClick={() => handleNavigation('contact')}
+            className="text-white bg-[#009688] hover:bg-[#00796B] font-medium text-sm uppercase tracking-wide px-4 py-2 rounded-lg transition-colors duration-300"
+          >
+            Contact Us
+          </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -98,14 +121,6 @@ const Navbar = () => {
             </div>
           </button>
         </div>
-
-        {/* Contact Us Button */}
-        <button
-          onClick={() => handleNavigation('contact')}
-          className="hidden lg:block text-white bg-[#009688] hover:bg-[#00796B] font-medium text-sm uppercase tracking-wide px-4 py-2 rounded-lg transition-colors duration-300"
-        >
-          Contact Us
-        </button>
       </div>
 
       {/* Mobile Menu */}
@@ -116,19 +131,14 @@ const Navbar = () => {
               <button
                 key={index}
                 onClick={() => handleNavigation(item.path)}
-                className="block w-full text-left px-4 py-2 text-gray-700 hover:text-[#00264D] hover:bg-gray-50 rounded-lg
-                  font-medium text-sm uppercase tracking-wide transition-colors duration-200"
+                className={`block w-full text-left px-4 py-2 text-gray-700 hover:text-[#00264D] hover:bg-gray-50 rounded-lg
+                  font-medium text-sm uppercase tracking-wide transition-colors duration-200 ${
+                    activeSection === item.path ? 'text-[#009688]' : ''
+                  }`}
               >
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={() => handleNavigation('contact')}
-              className="block w-full text-left px-4 py-2 text-white bg-[#009688] hover:bg-[#00796B] rounded-lg
-                font-medium text-sm uppercase tracking-wide transition-colors duration-200"
-            >
-              Contact Us
-            </button>
           </div>
         </div>
       )}

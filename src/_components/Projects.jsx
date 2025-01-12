@@ -5,6 +5,7 @@ function Projects() {
   const [isVisible, setIsVisible] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [imageLoaded, setImageLoaded] = useState({});
+  const [expanded, setExpanded] = useState({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,6 +27,10 @@ function Projects() {
     setImageLoaded(prev => ({ ...prev, [id]: true }));
   };
 
+  const toggleExpand = (id) => {
+    setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   return (
     <section 
       id="projects-section"
@@ -41,8 +46,8 @@ function Projects() {
           Our Projects
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8">
-          {visibleProjects.map((project, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {visibleProjects.map((project) => (
             <div 
               key={project.id}
               className="flex flex-col items-center bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-700"
@@ -56,13 +61,25 @@ function Projects() {
                 }`}
                 onLoad={() => handleImageLoad(project.id)}
               />
-              <div className="p-4 text-center">
-                <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="mt-2 text-gray-600">{project.description}</p>
+              <div className="p-4 flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-xl font-semibold text-center">{project.title}</h3>
+                  <p className="mt-2 text-gray-600">
+                    {expanded[project.id] ? project.description : `${project.description.slice(0, 100)}...`}
+                    {project.description.length > 100 && (
+                      <button 
+                        onClick={() => toggleExpand(project.id)} 
+                        className="text-[#009688] ml-2"
+                      >
+                        {expanded[project.id] ? 'Read Less' : 'Read More'}
+                      </button>
+                    )}
+                  </p>
+                </div>
                 <a 
                   href={project.href} 
                   target="_blank" 
-                  className="mt-4 inline-block px-4 py-2 bg-[#009688] text-white rounded-xl hover:bg-[#00796b] transition-all"
+                  className="mt-4 inline-block px-4 py-2 bg-[#009688] text-white rounded-xl hover:bg-[#00796b] transition-all self-center"
                 >
                   View Project
                 </a>
@@ -71,7 +88,7 @@ function Projects() {
           ))}
         </div>
 
-        {allProjects.length > 2 && (
+        {allProjects.length > 3 && (
           <div className="flex justify-center mt-16">
             <button
               onClick={() => setShowAll(!showAll)}

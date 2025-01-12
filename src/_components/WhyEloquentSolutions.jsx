@@ -65,7 +65,7 @@ const WhyEloquentSolutions = () => {
   };
 
   return (
-    <div className="w-full max-w-[90rem] min-h-[30rem] md:min-h-[40rem] lg:min-h-[46.75rem] mt-[8rem] md:mt-[10rem] lg:mt-[15rem] px-4 md:px-6 lg:px-8 bg-[radial-gradient(73.87%_83.62%_at_50%_16.38%,rgba(0,150,136,0.1)_0%,rgba(0,150,136,0.01)_29.6%,rgba(0,150,136,0.01)_100%)]">
+    <div className="w-full max-w-[90rem] min-h-[30rem] md:min-h-[40rem] lg:min-h-[46.75rem]  px-4 md:px-6 lg:px-8 bg-[radial-gradient(73.87%_83.62%_at_50%_16.38%,rgba(0,150,136,0.1)_0%,rgba(0,150,136,0.01)_29.6%,rgba(0,150,136,0.01)_100%)]">
       <motion.h2 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

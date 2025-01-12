@@ -31,12 +31,12 @@ function Hero() {
 
   return (
     <div 
-      className="bg-white relative overflow-hidden"
+      className="bg-white relative overflow-hidden w-full"
       style={{
         background: "linear-gradient(111.98deg, rgba(188, 232, 227, 0.01) 31.94%, rgba(93, 204, 193, 0.3) 85.58%)",
       }}
     >
-      <main className="relative w-full px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 md:pt-48 lg:pt-56">
+      <main className="w-full px-4 sm:px-6 lg:px-8 py-[10rem] sm:py-40 md:py-48 lg:py-56">
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text Content */}
           <div className="space-y-4 text-center lg:text-left order-2 lg:order-1">
@@ -87,8 +87,9 @@ function Hero() {
                   className={`w-full sm:w-auto h-12 rounded-2xl px-4 sm:px-6 py-2
                              transition-all duration-300 
                              flex items-center justify-center 
+                             hover:shadow-md whitespace-nowrap
                              ${isValid 
-                               ? 'bg-[#00264D] text-white hover:bg-[#003366] animate-pulse hover:scale-105' 
+                               ? 'bg-green-500 text-white hover:bg-green-400 animate-pulse hover:scale-105' 
                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                              }`}
                   onClick={handleGetStarted}
@@ -120,14 +121,7 @@ function Hero() {
             </div>
           </div>
         </div>
-
-        {/* Background Decorations */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#009688]/10 to-transparent -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-[#009688]/5 to-transparent -z-10"></div>
       </main>
-
-      {/* Custom Animations */}
-  
     </div>
   );
 }
